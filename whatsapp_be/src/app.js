@@ -7,6 +7,9 @@ import cookieParser from "cookie-parser"
 import compression from "compression"
 import fileUpload from "express-fileupload"
 import cors from 'cors'
+import createHttpErrors from 'http-errors'
+import routes from './routes/index.js'
+
 
 //dotenv config
 dotenv.config()
@@ -47,11 +50,24 @@ app.use(cors({
 }))
 
 
+//routes
+app.use("/api/v1", routes)
 
 
-app.post('/test', (req, res) => {
-    res.send(req.body)
+app.use(async (rew, res, next) => {
+    next(createHttpErrors.NotFound('This route does not exit'))
 })
 
+//error handling
 
+app.use(async (err, req, res, next) => {
+    res.status(err.status || 500)
+    res.send({
+        error: {
+            status: err.status || 500,
+            message: "this route has a error"
+        }
+    }
+    )
+})
 export default app
