@@ -26,7 +26,7 @@ mongoose.connect(DATABASE_URL, {
 let server = app.listen(port, () => {
     logger.info(`listining on port ${port}`);
     // throw new Error("error is rrrr faslkf")
-    logger.info(`${process.pid}`)
+    // logger.info(`${process.pid}`)
 })
 
 //handle error
