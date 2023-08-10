@@ -5,6 +5,7 @@ import { findUser } from "../services/user.service.js";
 
 export const register = async (req, res, next) => {
     try {
+        console.log(req.body);
         const { name, email, picture, status, password } = req.body;
         const newUser = await createUser({
             name,
@@ -93,6 +94,7 @@ export const logout = async (req, res, next) => {
 };
 export const refreshToken = async (req, res, next) => {
     try {
+
         const refresh_token = req.cookies.refreshtoken;
         if (!refresh_token) throw createHttpError.Unauthorized("Please login.");
         const check = await verifyToken(
