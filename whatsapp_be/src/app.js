@@ -66,7 +66,7 @@ app.use(async (err, req, res, next) => {
     res.send({
         error: {
             status: err.status || 500,
-            message: "this route has a error"
+            message: err.message,
         }
     }
     )

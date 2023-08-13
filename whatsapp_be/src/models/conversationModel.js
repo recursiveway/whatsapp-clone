@@ -9,7 +9,7 @@ const conversationSchema = mongoose.Schema(
         },
         picture: {
             type: String,
-            required: true,
+            required: false,
         },
         isGroup: {
             type: Boolean,
